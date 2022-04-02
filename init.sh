@@ -6,7 +6,7 @@ read -p "Enter the name of this project (Camel cased with first letter capitaliz
 
 # Check if the format of the name is correct 
 #   - The first character of the name should be capital
-#   - Should not contain the characters #<$+%>!`&*'|{?"=}/:\_@
+#   - Should not contain alphanumerical characters 
 valid=0
 while [ $valid -ne 1 ]
 do
@@ -49,17 +49,12 @@ echo "cmake_minimum_required(VERSION 3.13)" > CMakeLists.txt
 echo "project($proj VERSION 1.0)" >> CMakeLists.txt
 echo "set(CMAKE_CXX_STANDARD 14)" >> CMakeLists.txt
 echo "set(CMAKE_CXX_STANDARD_REQUIRED ON)" >> CMakeLists.txt
-echo "add_executable($proj src/main.cpp)"
+echo "add_executable(proj src/main.cpp)" >> CMakeLists.txt
 
 cd build
 cmake ../
-make 
 cd ..
 
-echo "Initializing version control..."
-touch .info.txt
-echo "project-name: $proj" > .info.txt
-echo "version: 1.0" >> .info.txt
+echo "Initialization Complete"
 
-
-
+exit 0
